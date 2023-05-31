@@ -5,9 +5,9 @@ services:
     image: katyssha/skypro_test_exam:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     # новый репозиторий с docker hub
     ports:
-      - 80:80
+      - "80:80"
     volumes:
-      - ./docker_ci_config.py:/code/default_config.py
+      - ./configs/docker_config.py:/code/configs/default_config.py
     depends_on:
       pg:
         condition: service_healthy

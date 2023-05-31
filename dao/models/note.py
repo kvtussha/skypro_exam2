@@ -3,7 +3,6 @@ from marshmallow import Schema, fields
 from sqlalchemy.sql import func
 
 
-# урок 17
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(250))

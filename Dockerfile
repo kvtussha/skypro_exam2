@@ -1,20 +1,17 @@
 FROM python:3.10-slim
-# устанавливает в образ указанную версию питона
+# Устанавливает в образ указанную версию питона
 # slim - упрощенная версия
 
 WORKDIR /code
-# в образе будет создана папка, куда будут сохраняться все дальнейшие действия
+# В образе будет создана папка, куда будут сохраняться все дальнейшие действия
 COPY requirements.txt .
-# копируется файл с зависимостями в текущую созданную директорию - code
+# Копируется файл с зависимостями в текущую созданную директорию - code
 RUN pip install -r requirements.txt
-# устанавливаются все зависимости в образ
+# Устанавливаются все зависимости в образ
 COPY . .
-# копирует весь проект в директорию code
-COPY configs/docker_config.py configs/default_config.py
-# default_config заменяется на docker_config
+# Копирует весь проект в текущую директорию
+
 # default_config нужен в процессе разработки, чтобы docker работал нужен docker_config
-
-
 # config -> default_config, переименовали
 # default_config копируем в только что созданный файл docker_config
 # в docker_config меняем SQLALCHEMY_DATABASE_URI = 'sqlite:///notes.db' на SQLALCHEMY_DATABASE_URI = "postgresql://flask_app:flask_app_password@pg/flask_app"
@@ -26,3 +23,4 @@ COPY configs/docker_config.py configs/default_config.py
 
 
 CMD flask run -h 0.0.0.0 -p 80
+# После создания образа выполняется команда запуска приложения

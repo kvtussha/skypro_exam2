@@ -12,6 +12,7 @@ jsonschema==4.17.3
 MarkupSafe==2.1.2
 marshmallow==3.19.0
 packaging==23.1
+psycopg2-binary==2.9.6
 pyrsistent==0.19.3
 pytz==2023.3
 schema==0.7.5
