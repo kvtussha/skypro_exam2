@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    image: katyssha/skypro_test_exam:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: katyssha/exam_skypro:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     # новый репозиторий с docker hub
     ports:
       - "80:80"
