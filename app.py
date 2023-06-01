@@ -3,7 +3,7 @@ from flask_restx import Api
 
 from configs.default_config import Config
 from setup_db import db, SQLAlchemy
-from views.notes import note_ns
+from views.schedule import schedule_ns
 
 
 def create_application(config: Config, database: SQLAlchemy) -> Flask:
@@ -16,7 +16,7 @@ def create_application(config: Config, database: SQLAlchemy) -> Flask:
 def register_extensions(application: Flask, database: SQLAlchemy) -> None:
     database.init_app(application)
     api = Api(application)
-    api.add_namespace(note_ns)
+    api.add_namespace(schedule_ns)
 
 def create_db(application: Flask, database: SQLAlchemy) -> None:
     with application.app_context():

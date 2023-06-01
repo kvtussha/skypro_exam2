@@ -9,8 +9,8 @@ services:
     volumes:
       # передавать данные между контейнерами
       # чтобы контейнеры согласовались
-      # левая часть заменяет правую
       - ./configs/docker_config.py:/code/configs/default_config.py
+        # default_config заменяется на docker_config
     depends_on:
       pg:
         condition: service_healthy
@@ -26,4 +26,3 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
-      # 5 попыток, ждет 10 сек и интервал 5 сек

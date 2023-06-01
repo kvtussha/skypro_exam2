@@ -1,13 +1,14 @@
-from dao.models.note import Note
+from dao.models.schedule import Schedule
 
 
-class NoteDAO:
+class ScheduleDAO:
     """
     Класс DAO является третьим слоем, который работает с базой данных.
 
     Методы данного класса обращаются к базе данных
     И отдают различные данные из нее.
     """
+
     def __init__(self, session):
         """
         Передается база данных
@@ -18,13 +19,13 @@ class NoteDAO:
         """
         Возвращает список с экземплярами модели.
         """
-        return self.session.query(Note).all()
+        return self.session.query(Schedule).all()
 
-    def get_one(self, nid: int):
+    def get_one(self, sid: int):
         """
         Возвращает экземпляр модели.
         """
-        return self.session.query(Note).get(nid)
+        return self.session.query(Schedule).get(sid)
 
     def create(self, data):
         """
@@ -33,25 +34,25 @@ class NoteDAO:
 
         Возвращает экземпляр модели.
         """
-        note = Note(**data)
+        schedule = Schedule(**data)
 
-        self.session.add(note)
+        self.session.add(schedule)
         self.session.commit()
 
-        return note
+        return schedule
 
-    def update(self, note: Note):
+    def update(self, schedule: Schedule):
         """
         Кладет обновленный экземпляр модели в базу данных.
         """
-        self.session.add(note)
+        self.session.add(schedule)
         self.session.commit()
 
-    def delete(self, nid: int):
+    def delete(self, sid: int):
         """
         Удаляет экземпляр модели из базы данных.
         """
-        note = self.get_one(nid)
+        schedule = self.get_one(sid)
 
-        self.session.delete(note)
+        self.session.delete(schedule)
         self.session.commit()

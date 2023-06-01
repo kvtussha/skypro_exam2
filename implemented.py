@@ -1,12 +1,12 @@
-from dao.note_dao import NoteDAO
-from services.note_service import NoteService
-from dao.models.note import NoteSchema
+from dao.schedule_dao import ScheduleDAO
+from services.schedule_service import ScheduleService
+from dao.models.schedule import ScheduleSchema
 
 from setup_db import db
 
 
-note_dao = NoteDAO(db.session)
-note_service = NoteService(note_dao)
+schedule_dao = ScheduleDAO(db.session)
+schedule_service = ScheduleService(schedule_dao)
 
-note_schema = NoteSchema()
-notes_schema = NoteSchema(many=True)
+lecture_schema = ScheduleSchema()
+lectures_schema = ScheduleSchema(many=True)

@@ -1,13 +1,13 @@
-from dao.note_dao import NoteDAO
+from dao.schedule_dao import ScheduleDAO
 
-class NoteService:
+class ScheduleService:
     """
     Класс Service является вторым слоем, который работает с бизнес-логикой
 
     Методы данного класса обрабатывают данные,
     После чего они отдаются в следующий слой DAO.
     """
-    def __init__(self, dao: NoteDAO):
+    def __init__(self, dao: ScheduleDAO):
         """
         В сервис передается нужный DAO
         Для дальнейшей работы с базой данных
@@ -20,11 +20,11 @@ class NoteService:
         """
         return self.dao.get_all()
 
-    def get_one(self, nid: int):
+    def get_one(self, sid: int):
         """
         Возвращает экземпляр модели.
         """
-        return self.dao.get_one(nid)
+        return self.dao.get_one(sid)
 
     def create(self, data):
         """
@@ -32,29 +32,38 @@ class NoteService:
         """
         return self.dao.create(data)
 
-    def update(self, data, nid: int):
+    def update(self, data, sid: int):
         """
         Обновляет все данные экземпляра модели.
         """
-        note = self.dao.get_one(nid)
+        lecture = self.dao.get_one(sid)
 
-        note.text = data.get("text")
+        lecture.title = data.get("title")
+        lecture.date = data.get("date")
+        lecture.teacher_name = data.get("teacher_name")
+        lecture.cabinet_num = data.get("cabinet_num")
 
-        self.dao.update(note)
+        self.dao.update(lecture)
 
-    def update_partial(self, data, nid: int):
+    def update_partial(self, data, sid: int):
         """
         Обновляет переданные данные экземпляра модели.
         """
-        note = self.dao.get_one(nid)
+        lecture = self.dao.get_one(sid)
 
-        if "text" in data:
-            note.text = data.get("text")
+        if "title" in data:
+            lecture.text = data.get("title")
+        if "date" in data:
+            lecture.text = data.get("date")
+        if "teacher_name" in data:
+            lecture.text = data.get("teacher_name")
+        if "cabinet_num" in data:
+            lecture.text = data.get("cabinet_num")
 
-        self.dao.update(note)
+        self.dao.update(lecture)
 
-    def delete(self, nid: int):
+    def delete(self, sid: int):
         """
         Удаляет экземпляр модели
         """
-        self.dao.delete(nid)
+        self.dao.delete(sid)
